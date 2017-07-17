@@ -46,14 +46,14 @@ export default class Mall extends React.Component {
 
     componentDidMount() {
     let data =  {}
-    this.fetchData(requestURL, data, function(set){
+    this.fetchData(requestURL, data, (set) => {
       var productList = set['recommendManage']
       console.log(productList)
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(productList),
         loaded: true,
       });
-    }.bind(this));
+    });
   }
 
 /*****************************************/
@@ -62,8 +62,10 @@ export default class Mall extends React.Component {
 
   setupUI() {
     return (
+
       <ListView 
-        style={{paddingTop:0}}
+        removeClippedSubviews={false}
+        style={{paddingTop:0 , flex:1}}
         dataSource={this.state.dataSource}
         renderRow={(rowData) => this.rendRowView(rowData)}
         renderFooter = {() => this.renderFooterView()}
@@ -121,7 +123,7 @@ export default class Mall extends React.Component {
     }
     fetch(url, fetchOptions)
       .then((response) => response.text())
-    .then((responseText) => {
+      .then((responseText) => {
       callback(JSON.parse(responseText));
     }).done();
   }

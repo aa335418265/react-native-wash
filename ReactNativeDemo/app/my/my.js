@@ -12,7 +12,7 @@ import {
 
 export default class My extends Component {
     static navigationOptions = {
-    title: '我的',
+    title: '我的12',
   };
   // UI渲染器, UI布局
   render() {
@@ -40,6 +40,7 @@ export default class My extends Component {
   setupUI = (argument) => {
     return (
       <ListView 
+          removeClippedSubviews={false}
           style={{paddingTop:0}}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => this.rendRowView(rowData)}
@@ -47,9 +48,6 @@ export default class My extends Component {
       )
   }
 
-  onPressLearnMore = (argument) => {
-
-  }
 
 }
 
